@@ -145,7 +145,7 @@
     <description></description>
     <display-name>RegistrationAssignmentServlet</display-name>
     <servlet-name>RegistrationAssignmentServlet</servlet-name>
-    <servlet-class>controllers.RegistrationAssignmentServlet</servlet-class>
+    <servlet-class>controller.RegistrationAssignmentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegistrationAssignmentServlet</servlet-name>
@@ -155,7 +155,7 @@
     <description></description>
     <display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>controllers.LoginServlet</servlet-class>
+    <servlet-class>controller.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>

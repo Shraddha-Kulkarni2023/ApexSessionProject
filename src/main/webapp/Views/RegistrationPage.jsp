@@ -39,6 +39,7 @@ function validate() {
 	if(firstname.length < 4 || lastname.length < 4) {
 		
 		alert("Field length should be greater than 4");
+		
 		return false;
 	}
 	return true;

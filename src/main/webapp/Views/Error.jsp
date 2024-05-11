@@ -7,7 +7,6 @@
 <title>Error</title>
 </head>
 <body>
-
 <jsp:forward page="RegistrationPage.jsp" />
 </body>
 </html>

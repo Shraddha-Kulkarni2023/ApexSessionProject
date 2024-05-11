@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 
 
@@ -17,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Constants.Projconstants;
 
 /**
  * Servlet implementation class RegistrationAssignmentServlet
@@ -86,7 +88,7 @@ public class RegistrationAssignmentServlet extends HttpServlet {
 				request.setAttribute("error","Record already Exists");
 				if(fname.equals(FirstName.trim()) && lname.equals(LastName.trim())) {
 					System.out.print("In if");
-					RequestDispatcher dispatcher1 = request.getRequestDispatcher("Views/Error.jsp");
+					RequestDispatcher dispatcher1 = request.getRequestDispatcher(Projconstants.page3);
 					dispatcher1.forward(request, response);
 					
 					
@@ -103,7 +105,7 @@ public class RegistrationAssignmentServlet extends HttpServlet {
 				ps1.setString(4,  designation);
 				
 				int rowinserted = ps1.executeUpdate();
-				RequestDispatcher dispatcher1 = request.getRequestDispatcher("Views/Success.jsp");
+				RequestDispatcher dispatcher1 = request.getRequestDispatcher(Projconstants.page4);
 				dispatcher1.forward(request, response);
 				
 				

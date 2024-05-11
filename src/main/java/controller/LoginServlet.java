@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import models.Order;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,12 +18,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Constants.Projconstants;
+
+import bean.Order;
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private Connection con = null;
+	//private static final long serialVersionUID = 1L;
+	private Connection con1 = null;
+	
+	public static final long serialVersionUID = 1L;
+	
+	
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -45,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			 Class.forName("com.mysql.jdbc.Driver");
-			 con = DriverManager.getConnection(dbUrl,dbUser,dbPassword);
+			 con1 = DriverManager.getConnection(dbUrl,dbUser,dbPassword);
 			 System.out.println("Connection successful");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,11 +76,12 @@ public class LoginServlet extends HttpServlet {
 		session1.setAttribute("username", username);
 		session1.setAttribute("password", password);
 		PrintWriter out = response.getWriter();
+		
 		List<Order> orderlist = new ArrayList<>();
 		if(!username.isEmpty() && !password.isEmpty()) {
 			String st4 = "select * from `Order`";
 			try {
-				PreparedStatement pst1 = con.prepareStatement(st4);
+				PreparedStatement pst1 = con1.prepareStatement(st4);
 				ResultSet table1 = pst1.executeQuery();
 				while(table1.next()) {
 				Order order = new Order();
@@ -85,7 +94,7 @@ public class LoginServlet extends HttpServlet {
 			} 
 				System.out.print(orderlist.size());
 				request.setAttribute("orderlist", orderlist);
-				RequestDispatcher dispatcher3 = request.getRequestDispatcher("Views/SuccessPage.jsp");
+				RequestDispatcher dispatcher3 = request.getRequestDispatcher(Projconstants.page1);
 				dispatcher3.forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -96,7 +105,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		else {
 			
-			RequestDispatcher dispatcher3 = request.getRequestDispatcher("Views/LoginPage.jsp");
+			RequestDispatcher dispatcher3 = request.getRequestDispatcher(Projconstants.page2);
 			dispatcher3.forward(request, response);
 		}
 	}

@@ -1,4 +1,4 @@
-package models;
+package bean;
 
 public class Order {
 	private int id;
